@@ -2,11 +2,10 @@ const express = require('express');
 const { Userroute } = require('../routes/User');
 const morgan = require('morgan');
 const errorMiddle=require('../middlewares/error');
-//const { adminRoute } = require('../routes/admin');
+const { adminRoute } = require('../routes/Admin');
 const { productRoute } = require('../routes/Product');
 const { Membershiproute } = require('../routes/Membership');
 const { vendorRoute } = require('../routes/Vendor');
-const prod = require('./prod');
 
 
 module.exports=function(app) {
@@ -18,7 +17,7 @@ module.exports=function(app) {
     app.use("/uploads", express.static("uploads"));
     
     app.use('/account',Userroute)
-    //app.use('/admin',adminRoute)
+    app.use('/admin',adminRoute)
     app.use('/vendor',vendorRoute)
     app.use('/membershipstatus',Membershiproute)
     
