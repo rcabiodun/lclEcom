@@ -1,9 +1,6 @@
 const express = require('express');
 const db=require('./startup/db')
 const debug=require('debug')('app:root')
-const { Userroute } = require('./routes/User');
-const morgan = require('morgan');
-const errorMiddle=require('./middlewares/error')
 const fs=require('fs')
 app=express()
 port=process.env.PORT || 8000

@@ -2,7 +2,7 @@ const express = require('express');
 const { Userroute } = require('../routes/User');
 const morgan = require('morgan');
 const errorMiddle=require('../middlewares/error');
-//const { adminRoute } = require('../routes/admin');
+const { adminRoute } = require('../routes/admin');
 const { productRoute } = require('../routes/Product');
 const { Membershiproute } = require('../routes/Membership');
 const { vendorRoute } = require('../routes/Vendor');
@@ -18,11 +18,11 @@ module.exports=function(app) {
     app.use("/uploads", express.static("uploads"));
     
     app.use('/account',Userroute)
-    //app.use('/admin',adminRoute)
+    app.use('/admin',adminRoute)
     app.use('/vendor',vendorRoute)
     app.use('/membershipstatus',Membershiproute)
     if(process.env.NODE_ENV="production"){
-        production(app)
+        prod(app)
     }
 
     app.use(require('../middlewares/notfound'))
