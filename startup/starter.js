@@ -22,7 +22,7 @@ module.exports=function(app) {
     app.use('/vendor',vendorRoute)
     app.use('/membershipstatus',Membershiproute)
     
-    app.use(require('../middlewares/notfound'))
+    app.use(require('../middlewares/notFound'))
     app.use(errorMiddle)
     
 }
