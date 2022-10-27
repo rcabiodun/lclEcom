@@ -8,7 +8,7 @@ const moment = require("moment");
 module.exports=async function(req,res,next){
     let token=req.header('x-auth-token')
     if (!token){
-        res.json({message:"Token is not present"})
+       return res.json({message:"Token is not present"})
     }
     try{
         const decode=jsonwebtoken.verify(token,'peaklane')
