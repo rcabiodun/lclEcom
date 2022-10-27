@@ -7,11 +7,9 @@ const moment = require("moment");
 
 //checks for expired memberships
 module.exports=async function(req,res,next){
-    console.log("checking membership")
     console.log(req.user_id)
     try{
         let checkingMembership=await Membership.findOne({vendor:req.user_id})
-        console.log(checkingMembership.startDate)
         console.log(moment().diff(checkingMembership.startDate,"years"))
         if (checkingMembership.is_verified==true && moment().diff(checkingMembership.startDate,"years")>0 ){
             checkingMembership.is_pending=true
