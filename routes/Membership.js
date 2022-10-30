@@ -14,7 +14,7 @@ route.put('/',[decode,membershipUpload],asyncMiddleware(async(req,res,next)=>{
         return res.json({"message":"Image failed to upload"})
     }
 
-    let membership=await Membership.findOneAndUpdate({vendor:req.user_id},{$set :{ proof_url:result.url}},{new:true})
+    let membership=await Membership.findOneAndUpdate({vendor:req.user_id},{$set :{proof_url:result.url,category:req.body.category}},{new:true})
     res.json(membership)
 
 }))

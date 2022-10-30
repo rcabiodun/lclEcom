@@ -15,6 +15,10 @@ const schema=new mongoose.Schema({
         type:Number,
         required:true
     },
+    unit:{
+        type:String,
+        required:true
+    },
     image_url:{
         type:String,
     },
