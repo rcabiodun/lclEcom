@@ -9,6 +9,7 @@ const { OrderProduct } = require('../models/OrderProduct')
 const { checkForm } = require('../middlewares/checkout')
 
 
+let pagesize=5
 
 
 route.get('/detail/:id',[decode],asyncMiddleware( async(req,res,next)=>{
@@ -21,7 +22,7 @@ route.get('/detail/:id',[decode],asyncMiddleware( async(req,res,next)=>{
 route.get('/all',[decode],asyncMiddleware( async(req,res,next)=>{
     let currentUser=await User.findOne({_id:req.user_id})
     //console.log(currentUser._id)
-    let vendors=await User.find({is_vendor:true,location:currentUser.location})
+    let vendors=await User.find({is_vendor:true,location:currentUser.location}).limit(pagesize).skip(pagesize*(req.query.pagenum-1))
     let products=[]
     console.log(vendors.length)
     for(let i=0;i<=vendors.length-1;i++){
@@ -33,6 +34,21 @@ route.get('/all',[decode],asyncMiddleware( async(req,res,next)=>{
     
     
 }))
+route.post('/search',[decode],asyncMiddleware( async(req,res,next)=>{
+    //console.log(currentUser._id)
+    let vendors=await User.find({is_vendor:true,location:req.body.location}).limit(pagesize).skip(pagesize*(req.query.pagenum-1))
+    let products=[]
+    console.log(vendors.length)
+    for(let i=0;i<=vendors.length-1;i++){
+        let result=await Product.find({vendor:vendors[i]._id,category:req.body.category})
+        products=products.concat(result)
+    }
+    console.log(products)
+    res.json(products)
+    
+    
+}))
+
 
 
 
