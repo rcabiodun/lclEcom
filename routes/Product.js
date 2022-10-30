@@ -9,7 +9,7 @@ const { OrderProduct } = require('../models/OrderProduct')
 const { checkForm } = require('../middlewares/checkout')
 
 
-let pagesize=5
+let pagesize=1
 
 
 route.get('/detail/:id',[decode],asyncMiddleware( async(req,res,next)=>{
