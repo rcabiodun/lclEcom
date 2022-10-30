@@ -8,7 +8,6 @@ const schema=new mongoose.Schema({
     },
     category:{
         type:String,
-        enum:["Fruits","Edibles"],
         required:true
     },
     price:{

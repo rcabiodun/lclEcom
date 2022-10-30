@@ -16,7 +16,6 @@ let schema=new mongoose.Schema({
     },
     category:{
         type:String,
-        enum:["student","corporate","associate","professional","auxiliary"],
     },
     
     startDate:{

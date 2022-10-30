@@ -16,7 +16,6 @@ let schema=new mongoose.Schema({
     },
     location:{
         type:String,
-        enum:["Lagos","Ogun"]
     },
     email:{
         type:String,
